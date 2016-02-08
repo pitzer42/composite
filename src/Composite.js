@@ -2,7 +2,7 @@ define(function () {
     function Composite() {
         Array.call(this);
 
-        function applyInChildren(methodName) {
+        function dispatchToChildren(methodName) {
             return function () {
                 var results = [];
                 var method;
@@ -20,7 +20,7 @@ define(function () {
             get: function (target, methodName) {
                 if (methodName in target)
                     return target[methodName];
-                return applyInChildren(methodName);
+                return dispatchToChildren(methodName);
             }
         });
     }
